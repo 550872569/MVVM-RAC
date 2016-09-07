@@ -1,0 +1,22 @@
+//
+//  Prefix.pch
+//  XGExam
+//
+//  Created by 小果 on 16/1/29.
+//  Copyright © 2016年 小果. All rights reserved.
+//
+
+#ifndef Prefix_pch
+#define Prefix_pch
+
+#define XGHeaderImageH 200
+#define ScreenW [UIScreen mainScreen].bounds.size.width
+#define ScreenH [UIScreen mainScreen].bounds.size.height
+
+#import "NSString+Extension.h"
+#import "UIColor+Tools.h"
+#import "UIImage+Extension.h"
+#import "UIView+Extension.h"
+
+
+#endif /* Prefix_pch */

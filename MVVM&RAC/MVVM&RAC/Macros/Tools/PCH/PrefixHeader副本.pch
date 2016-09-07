@@ -1,0 +1,185 @@
+//
+//  PrefixHeader.pch
+//  xktYS
+//
+//  Created by wanggeng on 15/10/25.
+//  Copyright © 2015年 WG. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+#import "UIView+extension.h"
+#import "SVProgressHUD.h"
+#import "WGNetWorkTools.h"
+#import "MJExtension.h"
+#import "NSArray+Log.h"
+#import "NSString+Hash.h"
+#import "WGNetWorkTools.h"
+#import "UIImageView+WebCache.h"
+#import "VideoViewController.h"
+#import "XKHomeModel.h"
+#import "CurrentPlayingModel.h"
+
+
+/**视频模型的归档地址 */
+#define XKDownloadVideoModelPath  [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"downloadVideoModel"]
+
+// 随机数的生成
+#import "NSString+XKRandomString.h"
+#define random1000_number_string [NSString stringWithFormat:@"%zd" ,(rand()%1000 + 1000) ]
+
+// 上线的时候取消打印
+#ifdef DEBUG
+#define NSLog(...) NSLog(__VA_ARGS__)
+#define debugMethod() NSLog(@"%s", __func__)
+#else
+#define NSLog(...)
+#define debugMethod()
+#endif
+    /**
+     
+     *用户名的前缀
+     
+     */
+
+#define USERNAME_PEWFIX @"xkt_"
+
+  /**
+   
+    *视频播放器页面的宏定义
+   
+    */
+
+// 视频图片的高宽比例
+#define VIDEO_IMAGESCALE  310/560
+
+// 视频的高宽比例
+#define VIDEO_SCALE  310/550
+
+// 视频下面文字的总高度
+#define VIDEO_TEXTHEIGHT 100
+
+// 视屏页面headerView的总高度
+#define VIDEO_HEADERVIEW_HEIGHT  (VIDEO_TEXTHEIGHT + SCREEN_WIDTH * VIDEO_IMAGESCALE)
+
+// 视频播放器
+#import "XKTCVideoPlayerController.h"
+
+#import "XKTheDownloadViewcontroller.h"
+//#import "XKVideoPlayerViewController.h"
+// 视频 模型
+#import "VideoModel.h"
+
+//加载 动画 UIImageView
+#import "UIImageView+Animation_XK.h"
+// 加载gif图片
+#import "UIWebView+GifImage.h"
+// 计算字符串的高度
+#import "NSString+Extension.h"
+
+
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+//临时使用
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+#define kViewSize (self.frame.size)
+#define kScreenSize ([UIScreen mainScreen].bounds.size)
+#define kViewContentHeight (kScreenSize.height - kNavigationBarHeight - kStatusBarHeight - kTabBarHeight)
+
+/**
+  *  navigationBar height
+  */
+#define kNavigationBarHeight 44
+
+#define kMargin 10
+
+#define kNormalLineHeight 0.5
+
+#define kTabBarHeight 49
+
+#define kStatusBarHeight 20
+
+#define kMapButtonWidth 40
+
+#define kBackButtonWidth 40
+
+#define kSearchFieldHeight 20
+
+
+
+#if TARGET_IPHONE_SIMULATOR
+#define SIMULATOR 1
+#elif TARGET_OS_IPHONE
+#define SIMULATOR 0
+#endif
+
+// 屏幕尺寸
+#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
+#define SCREEN_BOUNDS ([UIScreen mainScreen].bounds)
+#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+#define IOS_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]
+
+#define kNotificationStartSearch @"kNotificationStartSearch"
+
+
+
+//屏幕比例
+#define W_SCALE  ( SCREEN_WIDTH / 320)
+
+#define AUTO_X SCREEN_WIDTH/320
+#define AUTO_Y (SCREEN_HEIGHT>568?SCREEN_HEIGHT/568*0.95:1.0)
+
+
+//ios系统版本
+#define ios9x [[[UIDevice currentDevice] systemVersion] floatValue] >=9.0f
+#define ios8x [[[UIDevice currentDevice] systemVersion] floatValue] >=8.0f && ([[[UIDevice currentDevice] systemVersion] floatValue] < 9.0f)
+#define ios7x ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0f) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0f)
+#define ios6x [[[UIDevice currentDevice] systemVersion] floatValue] < 7.0f
+#define iosNot6x [[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0f
+
+//手机型号
+#define iphone4x_3_5 ([UIScreen mainScreen].bounds.size.height==480.0f)
+
+#define iphone5x_4_0 ([UIScreen mainScreen].bounds.size.height==568.0f)
+
+#define iphone6_4_7 ([UIScreen mainScreen].bounds.size.height==667.0f)
+
+#define iphone6Plus_5_5 ([UIScreen mainScreen].bounds.size.height==736.0f || [UIScreen mainScreen].bounds.size.height==414.0f)
+
+//像素对应的字体大小
+#define FONTFromePX(PX) [UIFont systemFontOfSize:(PX * 0.5)]
+#define V3_18PX_FONT [UIFont systemFontOfSize:11]
+#define V3_20PX_FONT [UIFont systemFontOfSize:12]
+#define V3_22PX_FONT [UIFont systemFontOfSize:13]
+#define V3_24PX_FONT [UIFont systemFontOfSize:14]
+#define V3_26PX_FONT [UIFont systemFontOfSize:15]
+#define V3_28PX_FONT [UIFont systemFontOfSize:16]
+#define V3_30PX_FONT [UIFont systemFontOfSize:17]
+#define V3_32PX_FONT [UIFont systemFontOfSize:17.5]
+#define V3_34PX_FONT [UIFont systemFontOfSize:18]
+#define V3_36PX_FONT [UIFont systemFontOfSize:19]
+
+/*
+ *通知中心 通知的名称
+ */
+// 点击名师的通知
+#define WGTheTearchViewDidClickNotification @"WGTheTearchViewDidClickNotification"
+
+// 点击最新课程的通知
+#define WGNewViewDidClickNotification @"WGNewViewDidClickNotification"
+
+// 点击VIP课程的通知
+#define WGVIPViewDidClickNotification @"WGVIPViewDidClickNotification"
+
+// 视屏占位图片
+#define VIDEO_ZHANWEI [UIImage imageNamed:@"zhanweiVideo"]
+// 基本的url
+#define baseUrl @"http://www.xuekaotong.cn/"
+
+
+
+#endif /* PrefixHeader_pch */
+
+
+
